@@ -5,58 +5,32 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
-    [SerializeField]
-    private int _speed;
-    
-    [SerializeField]
-    [TextArea]
-    private string _str;
-    
-    [SerializeField]
-    [Range(0, 10)]
-    private float _float;
 
-    [SerializeField]
-    private List<string> items = new List<string>();
+    [SerializeField] private GameObject _cube1;
+    [SerializeField] private MeshRenderer _renderer;
+
+    [SerializeField] private bool _shouldChangeColor;
+
+    [SerializeField] private Color _color;
+
     // Start is called before the first frame update
-    private void Awake()
-    {
-        Debug.Log($"Awake {gameObject.name}");
-    }
-
-    private void OnEnable()
-    {
-        Debug.Log($"OnEnable {gameObject.name}");
-    }
-
     private void Start()
     {
-        Debug.Log($"Start {gameObject.name}");
+        _cube1 = GameObject.FindGameObjectWithTag("Cube1");
+        _renderer = _cube1.GetComponent<MeshRenderer>();
     }
-
-    private void FixedUpdate()
-    {
-        Debug.Log($"FixedUpdate {gameObject.name}");
-    }
-
+    
     // Update is called once per frame
     private void Update()
     {
+        if (_shouldChangeColor)
+        {
+            //TODO Change color
+            _renderer.material.color = _color;
+            _shouldChangeColor = false;
+        }
+
         Debug.Log($"Update {gameObject.name}");
     }
-
-    private void LateUpdate()
-    {
-        Debug.Log($"LateUpdate {gameObject.name}");
-    }
-
-    private void OnDisable()
-    {
-        Debug.Log($"OnDisable {gameObject.name}");
-    }
-
-    private void OnDestroy()
-    {
-        Debug.Log($"OnDestroy {gameObject.name}");
-    }
+    
 }
